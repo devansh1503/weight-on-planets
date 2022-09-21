@@ -1,0 +1,259 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* https://wallpaperaccess.com/full/1745055.jpg */
+            background-image: url('https://images4.alphacoders.com/106/106826.jpg');
+            background-size: cover;
+            color: white;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .main {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: cyan;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .planets {
+            /* background-color: rgba(32, 32, 32, 0.621); */
+            display: flex;
+            flex-wrap: wrap;
+            /* translate: translate(-50%, -50%);
+            border-radius: 150px 150px 0 0; */
+        }
+
+        .planets * {
+            margin: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border: none;
+            color: white;
+            background-color: rgb(29, 29, 29);
+            font-size: 25px;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .planet * {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .planet {
+            transition: all 0.5s ease-in-out;
+            z-index: 1000;
+        }
+
+        .planet:hover {
+            transform: scale(1.2, 1.2);
+        }
+
+        .planet p {
+            font-size: 25px;
+        }
+
+        .sat {
+            width: 240px;
+            height: 200px;
+            margin: -20px -60px -60px -60px;
+        }
+
+        .res {
+            font-size: 30px;
+            background-color: rgb(41, 41, 41);
+            padding: 15px;
+            border-radius: 50px;
+            height: fit-content;
+            margin-left: 40px;
+        }
+
+        .resulttag {
+            margin-top: -120px;
+        }
+
+        .displayimg {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .earth {
+            margin-top: 140px;
+        }
+
+        .mer {
+            margin-top: 80px;
+        }
+
+        .uranus {
+            margin-top: 80px;
+        }
+
+        .neptune {
+            margin-top: 140px;
+        } 
+        .astro{
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 15%;
+            bottom: 10%;
+        }
+        .astro *{
+            margin: 5px;
+        }
+        .astro p{
+            font-size: 20px;
+            width: 160px;
+            font-family: cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Weight On Planets</h1>
+        <form>
+            <input type="text" placeholder="ENTER WEIGHT" class="inp">
+        </form>
+        <div class="planets">
+            <div class="planet earth" onclick="clickHandle(1)">
+                <img class="1" src="planets/earth.jpeg"  alt="">
+                <p>Earth</p>
+            </div>
+            <div class="planet mer" onclick="clickHandle(2)">
+                <img class="2" src="planets/mercury.jpeg" alt="">
+                <p>Mercury</p>
+            </div>
+            <div class="planet ven" onclick="clickHandle(3)">
+                <img class="3" src="planets/Venus.jpeg" alt="">
+                <p>Venus</p>
+            </div>
+            <div class="planet mars" onclick="clickHandle(4)">
+                <img class="4" src="planets/Mars.jpeg" alt="">
+                <p>Mars</p>
+            </div>
+            <div class="planet jup" onclick="clickHandle(5)">
+                <img class="5" src="planets/Jupiter.jpeg" alt="">
+                <p>Jupiter</p>
+            </div>
+            <div class="planet saturn" onclick="clickHandle(6)">
+                <img class="6 sat" src="planets/saturn.png" alt="">
+                <p>Saturn</p>
+            </div>
+            <div class="planet uranus" onclick="clickHandle(7)">
+                <img class="7" src="planets/Uranus.jpeg" alt="">
+                <p>Uranus</p>
+            </div>
+            <div class="planet neptune" onclick="clickHandle(8)">
+                <img class="8" src="planets/Neptune.jpeg" alt="">
+                <p>Neptune</p>
+            </div>
+        </div>
+        <div style="display: flex; align-items: center;" class="resulttag">
+            <img src="" alt="planet image appears here" class="displayimg hide">
+            <div class="res">Result</div>
+        </div>
+    </div>
+    <div class="astro">
+        <img src="planets/astro-removebg-preview.png" alt="" class="ball">
+        <p>Drag the Astronaut to the middle of planet</p>
+    </div>
+    <script>
+        var ball = document.getElementsByClassName('ball')[0]
+        var plt = document.getElementsByClassName('planet')[0]
+        function clickHandle(planet) {
+            var weight = document.getElementsByClassName('inp')[0].value
+            var resw = weight
+            var imgsrc = document.getElementsByClassName(planet)[0].src
+            var disimg = document.getElementsByClassName('displayimg')[0]
+            disimg.classList.remove('hide')
+            console.log(imgsrc)
+            console.log(disimg)
+            switch (planet) {
+                case 1: resw = +weight * 1; break;
+                case 2: resw = +weight * 0.38; break;
+                case 3: resw = +weight * 0.91; break;
+                case 4: resw = +weight * 0.38; break;
+                case 5: resw = +weight * 2.34; break;
+                case 6: resw = +weight * 1.06; break;
+                case 7: resw = +weight * 0.92; break;
+                case 8: resw = +weight * 1.19; break;
+            }
+            document.getElementsByClassName('res')[0].innerHTML = resw + " kg"
+            disimg.src = imgsrc
+        }
+        ball.onmousedown = function (event) {
+            // (1) prepare to moving: make absolute and on top by z-index
+            ball.style.position = 'absolute';
+            ball.style.zIndex = 1000;
+
+            // move it out of any current parents directly into body
+            // to make it positioned relative to the body
+            document.body.append(ball);
+
+            // centers the ball at (pageX, pageY) coordinates
+            function moveAt(pageX, pageY) {
+                ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+                ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+            }
+
+            // move our absolutely positioned ball under the pointer
+            moveAt(event.pageX, event.pageY);
+
+            function onMouseMove(event) {
+                moveAt(event.pageX, event.pageY);
+            }
+
+            // (2) move the ball on mousemove
+            document.addEventListener('mousemove', onMouseMove);
+
+            // (3) drop the ball, remove unneeded handlers
+            ball.onmouseup = function () {
+                document.removeEventListener('mousemove', onMouseMove);
+                ball.onmouseup = null;
+                var position = ball.getBoundingClientRect()
+                var eles = document.elementFromPoint(position.right, position.top)
+                console.log(eles)
+                eles.click();
+            };
+        };
+        ball.ondragstart = function () {
+            return false;
+        };
+    </script>
+</body>
+
+</html>
